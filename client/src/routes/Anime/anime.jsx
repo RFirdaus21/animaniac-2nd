@@ -56,7 +56,7 @@ function Anime() {
 
       {isLoading ? (
         <p>Loading...</p>
-        // <img src="" alt="" />
+        // <img src="https://pic.re" alt="" />
       ) : error ? (
         <p>{error}</p>
       ) : (
