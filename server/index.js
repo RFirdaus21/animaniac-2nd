@@ -87,9 +87,9 @@ app.put("/api/animes", async (req, res)=>{
             synopsis : req.body.synopsis,
         }
 
-        if(req.file) {
-            updateAnime.thumbnail = req.file.filename;
-        }
+        // if(req.file) {
+        //     updateAnime.thumbnail = req.file.filename;
+        // }
         
         await Anime.findByIdAndUpdate(animeId, updateAnime);
         res.json("data changed");

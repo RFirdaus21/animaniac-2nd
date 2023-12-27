@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import NoImageSelected from '../../assets/no-image.png';
 
 function editAnime() {
     const urlSlug = useParams();
@@ -50,7 +49,6 @@ function editAnime() {
     useEffect(()=> {
         fetchData();
     }, []);
-
     
 
     const createAnime = async(e)=> {
@@ -76,6 +74,7 @@ function editAnime() {
             const response = await fetch(`${serverUrl}/api/animes`, {
                 method: "PUT",
                 body: JSON.stringify({
+                    animeId: animeId,
                     title: title,
                     slug: slug,
                     jtitle: jtitle,
