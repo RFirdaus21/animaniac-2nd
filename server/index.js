@@ -9,13 +9,9 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 db();
-app.use(cors());
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000', 'https://animaniac-app.vercel.app/');
-    // Other headers...
-    next();
-  });
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://animaniac-app.vercel.app'],
+  }));
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
