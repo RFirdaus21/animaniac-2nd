@@ -59,16 +59,31 @@ function Anime() {
       ) : error ? (
         <p>{error}</p>
       ) : (
-      <ul className='animes'>
-        {data.map((item)=>(
-            <li key={item._id}>
+        <table className='animes'>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Release</th>
+            <th>Studio</th>
+            <th>Genre</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item._id}>
+              <td>
                 <Link to={`/animes/${item.slug}`}>
-                    <img src={`${serverUrl}/uploads/${item.thumbnail}`} alt={item.title}/>
-                    <h3>{item.title}</h3>
+                  <h3>{item.title}</h3>
                 </Link>
-            </li>
-        ))}
-      </ul>
+              </td>
+              <td>{item.release}</td>
+              <td>{item.studio}</td>
+              <td>{item.genre}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      
       )}
     </div>
   )

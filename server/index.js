@@ -1,12 +1,12 @@
 require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
-const Anime = require("./models/Anime");
-const multer = require("multer");
 const db = require("./db");
+const Anime = require("./models/Anime");
 const path = require("path")
 
 const app = express();
+
 const PORT = process.env.PORT || 8000;
 
 db();
@@ -45,22 +45,14 @@ app.get("/api/animes/:slug", async (req, res)=>{
     }
 });
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'public/uploads/')
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random()*1E9)
-        cb(null, uniqueSuffix + "-" + file.originalname );
-    }
-});
-
-const upload = multer({ storage: storage});
-
-app.post("/api/animes", upload.single("thumbnail"), async (req, res)=>{
+app.post("/api/animes", async (req, res)=>{
     try {
         console.log(req.body);
-        console.log(req.file);
+
+        if(!req.body.title){
+            res.status(500).json({error: "Failed to catch data!"});
+            return;
+        }
         const newAnime = new Anime({
             title: req.body.title,
             jtitle: req.body.jtitle,
@@ -68,20 +60,19 @@ app.post("/api/animes", upload.single("thumbnail"), async (req, res)=>{
             score: req.body.score,
             studio: req.body.studio,
             release: req.body.release,
-            genre : req.body.genre,
-            synopsis : req.body.synopsis,
-            thumbnail : req.file.filename
+            genre: req.body.genre,
+            synopsis: req.body.synopsis,
         })
-        
         
         await Anime.create(newAnime);
         res.json("data added");
     } catch (error){
-        res.status(500).json({error: "Failde to catch data!"});
+        console.error(error)
+        res.status(500).json({error: "Failed to catch data!"});
     }
 });
 
-app.put("/api/animes", upload.single("thumbnail"), async (req, res)=>{
+app.put("/api/animes", async (req, res)=>{
     try {
         const animeId = req.body.animeId;
 

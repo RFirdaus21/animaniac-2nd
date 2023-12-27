@@ -34,22 +34,23 @@ function SingleAnime() {
     <div>
       <Link to={"/anime-list"}> </Link>
       <div className="animedetails">
-        <div className="col-1">
+        {/* <div className="col-1">
           <img
             src={`${serverUrl}/uploads/${data.thumbnail}`}
             alt={data.title}
           />{" "}
           <br />
-          <Link to={`/editanimes/${data.slug}`}>Edit</Link>
-        </div>
-        <div className="col-2">
+          
+        </div> */}
+        <div>
           <h1>{data.title}</h1>
           <p>Original Title : {data.jtitle}</p>
           <p>MAL Score : {data.score}</p>
           <p>Studio : {data.studio}</p>
           <p>Release Year : {data.release}</p>
           <p className="genre">Genres : {data.genre}</p>
-          <p>Synopis : {data.synopsis}</p>
+          <p>Synopis : {data.synopsis}</p> <br/>
+          <Link to={`/editanimes/${data.slug}`}>Edit Data</Link>
         </div>
       </div>
     </div>

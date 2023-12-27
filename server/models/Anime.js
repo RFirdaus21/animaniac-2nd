@@ -12,11 +12,8 @@ const AnimeSchema = new Schema({
     jtitle: {
         type: String,
     },
-    thumbnail : {
-        type: String,
-    },
     release: {
-        type: Number,
+        type: String,
     },
     studio: {
         type: String,

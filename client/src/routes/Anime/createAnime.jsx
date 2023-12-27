@@ -18,26 +18,45 @@ function CreateAnime() {
     const [submitted, setSubmitted] = useState("");
     const [image, setImage] = useState(NoImageSelected);
 
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("slug", slug);
-    formData.append("jtitle",jtitle);
-    formData.append("score", score);
-    formData.append("studio", studio);
-    formData.append("release", release);
-    formData.append("genre", genre);
-    formData.append("synopsis", synopsis);
-    formData.append("thumbnail", thumbnail);
+    // const formData = new FormData({
+    //     title: title,
+    //     slug: slug,
+    //     jtitle: jtitle,
+    //     score: score,
+    //     studio: studio,
+    //     release: release,
+    //     genre: genre,
+    //     synopsis: synopsis,
+    //     thumbnail: thumbnail,
+    //   });
+    // formData.append("title", title);
+    // formData.append("slug", slug);
+    // formData.append("jtitle",jtitle);
+    // formData.append("score", score);
+    // formData.append("studio", studio);
+    // formData.append("release", release);
+    // formData.append("genre", genre);
+    // formData.append("synopsis", synopsis);
+    // formData.append("thumbnail", thumbnail);
 
     const createAnime = async(e)=> {
         e.preventDefault();
         console.table([title, slug ]);
-        console.log(genre);
-
         try {
             const response = await fetch(`${serverUrl}/api/animes`, {
                 method: "POST",
-                body: formData,
+                body: JSON.stringify({
+                    title: title,
+                    slug: slug,
+                    jtitle: jtitle,
+                    score: score,
+                    studio: studio,
+                    release: release,
+                    genre: genre,
+                    synopsis: synopsis,
+                    // thumbnail: thumbnail,
+                  }),
+                headers: {'Content-Type': 'application/json'}
             });
         
 
@@ -77,15 +96,15 @@ function CreateAnime() {
             <p>Data sucessfully added</p>
         ):(
             <form className='animedetails' onSubmit={createAnime}>
-                <div className='col-1'>
+                {/* <div className='col-1'>
                     <label>Upload Picture</label>
                     <img src={image} alt='image preview'/>
                     <input 
                         type='file' 
                         accept='image/jpg, image/png, image/jpeg'
                         onChange={onImageChange} />
-                </div>
-                <div className='col-2'>
+                </div> */}
+                <div>
                     <div>
                         <label>Title</label>
                         <input type='text' value={title} onChange={(e)=> setTitle(e.target.value)} />
