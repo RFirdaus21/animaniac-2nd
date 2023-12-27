@@ -9,8 +9,6 @@ function Anime() {
     const [error, setError] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState("");
 
-    console.log(baseUrl)
-
     useEffect(()=> {
         const fetchData = async()=> {
             try {
