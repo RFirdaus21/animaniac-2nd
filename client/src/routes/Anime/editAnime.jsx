@@ -4,7 +4,8 @@ import NoImageSelected from '../../assets/no-image.png';
 
 function editAnime() {
     const urlSlug = useParams();
-    const baseUrl = `http://localhost:8000/api/animes/${urlSlug.slug}`;
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
+    const baseUrl = `${serverUrl}/api/animes/${urlSlug.slug}`;
 
     const navigate = useNavigate();
 
@@ -72,7 +73,7 @@ function editAnime() {
         }
 
         try {
-            const response = await fetch("http://localhost:8000/api/animes", {
+            const response = await fetch(`${serverUrl}}/api/animes`, {
                 method: "PUT",
                 headers : {},
                 body: formData,
@@ -106,7 +107,7 @@ function editAnime() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:8000/api/animes/" + animeId, {
+            const response = await fetch(`${serverUrl}/api/animes/` + animeId, {
                 method: "DELETE"
             })
 
@@ -139,7 +140,7 @@ function editAnime() {
                     {image ? (
                         <img src={`${image}`} alt="image preview" />
                     ):(
-                        <img src={`http://localhost:8000/uploads/${thumbnail}`} alt='image preview'/>
+                        <img src={`${serverUrl}/uploads/${thumbnail}`} alt='image preview'/>
                     ) }
                     <input 
                         type='file' 

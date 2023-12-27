@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
 function Anime() {
-    const baseUrl = "http://localhost:8000/api/animes";
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
+    const baseUrl = `${import.meta.env.VITE_SERVER_URL}/api/animes`;
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -60,7 +61,7 @@ function Anime() {
         {data.map((item)=>(
             <li key={item._id}>
                 <Link to={`/animes/${item.slug}`}>
-                    <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt={item.title}/>
+                    <img src={`${serverUrl}/uploads/${item.thumbnail}`} alt={item.title}/>
                     <h3>{item.title}</h3>
                 </Link>
             </li>

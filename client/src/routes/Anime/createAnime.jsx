@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import NoImageSelected from '../../assets/no-image.png';
 
 function CreateAnime() {
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
+
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");
     const [jtitle, setJtitle] = useState("");
@@ -31,7 +33,7 @@ function CreateAnime() {
         console.log(genre);
 
         try {
-            const response = await fetch("http://localhost:8000/api/animes", {
+            const response = await fetch(`${serverUrl}/api/animes`, {
                 method: "POST",
                 body: formData,
             });
