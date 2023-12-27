@@ -70,6 +70,7 @@ app.post("/api/animes", upload.single("thumbnail"), async (req, res)=>{
             thumbnail : req.file.filename
         })
         
+        console.log(newAnime.thumbnail)
         await Anime.create(newAnime);
         res.json("data added");
     } catch (error){

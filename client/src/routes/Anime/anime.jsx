@@ -63,7 +63,7 @@ function Anime() {
         {data.map((item)=>(
             <li key={item._id}>
                 <Link to={`/animes/${item.slug}`}>
-                    <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt={item.title}/>
+                    <img src={`${serverUrl}/uploads/${item.thumbnail}`} alt={item.title}/>
                     <h3>{item.title}</h3>
                 </Link>
             </li>
