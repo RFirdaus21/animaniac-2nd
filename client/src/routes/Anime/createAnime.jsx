@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NoImageSelected from '../../assets/no-image.png';
 
 function CreateAnime() {
     const serverUrl = import.meta.env.VITE_SERVER_URL;
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");
@@ -44,6 +46,7 @@ function CreateAnime() {
                 setSlug("");
                 setGenre([]);
                 setSubmitted(true);
+                navigate("/anime-list");
             } else {
                 console.log("Failed to submit data.");
             }

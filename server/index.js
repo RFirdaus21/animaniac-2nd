@@ -4,6 +4,7 @@ const express = require("express");
 const Anime = require("./models/Anime");
 const multer = require("multer");
 const db = require("./db");
+const path = require("path")
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -15,7 +16,9 @@ app.use(cors({
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use("/uploads",express.static("uploads"));
+app.use(express.static(path.join(path.resolve(), "public")));
+
+console.log(path.join(path.resolve(), "public"))
 
 app.get("/api/animes", async (req, res)=>{
     try {
@@ -44,7 +47,7 @@ app.get("/api/animes/:slug", async (req, res)=>{
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'uploads/')
+        cb(null, 'public/uploads/')
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random()*1E9)
@@ -70,7 +73,7 @@ app.post("/api/animes", upload.single("thumbnail"), async (req, res)=>{
             thumbnail : req.file.filename
         })
         
-        console.log(newAnime.thumbnail)
+        
         await Anime.create(newAnime);
         res.json("data added");
     } catch (error){

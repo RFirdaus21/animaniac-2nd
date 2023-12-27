@@ -112,14 +112,13 @@ function editAnime() {
             })
 
             if (response.ok) {
-                navigate("/list-anime");
+                navigate("/anime-list");
                 console.log("Anime removed");
             }
         } catch (error) {
             console.error(error);
         }
     }
-
 
 
   return (
