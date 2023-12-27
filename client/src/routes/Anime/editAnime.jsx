@@ -5,7 +5,7 @@ import NoImageSelected from '../../assets/no-image.png';
 function editAnime() {
     const urlSlug = useParams();
     const serverUrl = import.meta.env.VITE_SERVER_URL;
-    const baseUrl = `${serverUrl}/api/animes/${urlSlug.slug}`;
+    const baseUrl = `http://localhost:8000/api/animes/${urlSlug.slug}`;
 
     const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ function editAnime() {
         }
 
         try {
-            const response = await fetch(`${serverUrl}}/api/animes`, {
+            const response = await fetch(`http://localhost:8000/api/animes`, {
                 method: "PUT",
                 headers : {},
                 body: formData,
@@ -107,7 +107,7 @@ function editAnime() {
         e.preventDefault();
 
         try {
-            const response = await fetch(`${serverUrl}/api/animes/` + animeId, {
+            const response = await fetch(`http://localhost:8000/api/animes/` + animeId, {
                 method: "DELETE"
             })
 

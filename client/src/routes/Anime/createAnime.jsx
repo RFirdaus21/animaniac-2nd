@@ -33,7 +33,7 @@ function CreateAnime() {
         console.log(genre);
 
         try {
-            const response = await fetch(`${serverUrl}/api/animes`, {
+            const response = await fetch("http://localhost:8000/api/animes", {
                 method: "POST",
                 body: formData,
             });

@@ -6,7 +6,7 @@ function SingleAnime() {
     
     const [data, setData] = useState([]);
     const urlSlug = useParams();
-    const baseUrl = `${serverUrl}}/api/animes/${urlSlug.slug}`;
+    const baseUrl = `http://localhost:8000/api/animes/${urlSlug.slug}`;
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState("");
